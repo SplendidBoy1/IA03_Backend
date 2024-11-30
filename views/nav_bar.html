@@ -1,0 +1,17 @@
+
+        <nav class="navbar navbar-expand-md rounded 21239{if mode} navbar_dark_color {else} navbar_light_color {/if}">
+            <div class="container-fluid">
+                <a class="navbar-brand 21239{if mode} text-light {else} text-dark {/if}" href="#">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+                <form class="d-flex" role="search">
+                    <select class="form-select form-select-sm size_box" name="mode_search" id="mode_search">
+                        <option value="movie">Movie</option>
+                        <option value="name">Name of Actor</option>
+                    </select>
+                    <input name="search" class="form-control 21239{if mode} bg-dark dark_search {else} bg-light light_search {/if}"  type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+

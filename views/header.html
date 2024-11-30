@@ -1,0 +1,25 @@
+<div class=" row rounded px-3 py-1 color_header_text 21239{if mode} bg-dark-red {else} bg-light-red {/if}">
+    
+    <div class="col-md-1 py-2" class="bg-light">
+        <21127239>
+    </div>
+    <div class="col-md-10 text-center">
+        <b class=" 21239{if mode} movie_dark_info {else} movie_light_info {/if} ">Movies info</b>
+    </div>
+    <div class="col-1 d-flex justify-content-end py-2 21239{if mode} color_header_dark_text {else} color_header_light_text {/if}">
+        <div class="row">
+            <div class="col-6 d-flex justify-content-end">
+                <form class="form-check form-switch" action="/switch_mode" method="POST">
+                    21239{if mode}
+                    <input class="form-check-input" name="switch" type="checkbox" role="switch" id="switch_mode" checked onchange="this.form.submit()">
+                    {else}
+                    <input class="form-check-input" name="switch" type="checkbox" role="switch" id="switch_mode" onchange="this.form.submit()">
+                    {/if}
+                </form>
+            </div>
+            <div class="col-6">
+                <i class="21239{if mode} fa-solid fa-moon {else} fa-solid fa-sun {/if}"></i>
+            </div>
+        </div>
+    </div>
+</div> 

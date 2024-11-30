@@ -1,15 +1,18 @@
 {
   "dependencies": {
-    "express": "^4.21.1"
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "pg-promise": "^11.10.2"
   },
   "name": "ia03",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
-  "author": "lxdat21@student.hcmus.edu.vn",
+  "author": "lxdat21@clc.fitus.edu.vn",
   "license": "ISC",
   "description": ""
 }
