@@ -49,11 +49,11 @@ function temPlateEngine(filePath, options, callback){
             /21239{for ([\s\S]*?) in ([\s\S]*?)}([\s\S]*?){\/for}/g,
             (matching, each, array, sentence) => {
                 const array_data = options[array.trim()];
-                //console.log(each)
-                //console.log(array_data)
-                //console.log("123")
-                //console.log(sentence)
-                //console.log("123")
+                console.log(each)
+                console.log(array_data)
+                console.log("123")
+                console.log(sentence)
+                console.log("123")
                 if (Array.isArray(array_data)) {
                     //let regex = ''
                     const regex = new RegExp(`\s*${each}\s*`)
@@ -77,7 +77,7 @@ function temPlateEngine(filePath, options, callback){
                     }
                     //console.log(data_return)
                     return data_return
-                        
+                    
                     
                 }
                 //callback(null, content)
@@ -115,7 +115,7 @@ function temPlateEngine(filePath, options, callback){
                 // const match_var = match.match(/(?<=\{).*?(?=\})/g);
                 // console.log(match_var)
                 //console.log(options[value])
-
+                console.log(value)
                 if (value.includes("[")){
                     //console.log("Trueeee")
                     let split_data = value.split("[")
@@ -140,8 +140,10 @@ function temPlateEngine(filePath, options, callback){
                 //console.log("False")
                 else{
                     if (value.includes(".")){
+                        //console.log(value)
                         let split_data = value.split(".")
                         let temp_arr = options[split_data[0]]
+                        //console.log(temp_arr)
                         let String_exec = `temp_arr`
                         for (let i = 1; i < split_data.length; i++){
                             String_exec = String_exec +  '.' + split_data[i];

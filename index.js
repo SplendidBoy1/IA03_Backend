@@ -90,6 +90,50 @@ async function getData(){
 
 // getData();
 
+// async function getData(){
+//     const data = await fetch("http://matuan.online:2422/api/Movies");
+//     const rs =  await data.json();
+//     rs.forEach(async (each_data) => {
+//         console.log(each_data)
+//         let data_genlist = each_data.genreList
+//         let genes = []
+//         for (let i = 0; i < data_genlist.length; i++){
+//             genes.push(data_genlist[i].key)
+//         }
+//         let revenue = '0'
+//         try { revenue = each_data.boxOffice.cumulativeWorldwideGross}
+//         catch(e){
+//             console.log(e)
+//         }
+//         let movie = {
+//             movie_id: each_data.id,
+//             movie_name: each_data.title,
+//             image_link: each_data.image,
+//             genes: genes,
+//             year_public: each_data.year,
+//             plot: each_data.plot,
+//             rating: each_data.ratings.imDb,
+//             revenue: parseInt(revenue.replace(/\D/g, ""), 10)
+//         }
+//         console.log(movie)
+//         try{
+//             const rs = await db.add("Movie", movie)
+//         }
+//         catch(e){
+//             console.log(e)
+//         }
+//         // console.log(each_data.id)
+//         // console.log(each_data.title)
+//         // console.log(each_data.year)
+//         // console.log(each_data.image)
+//         // console.log(each_data.plot)
+//     });
+    
+//     //console.log(data);
+//     // console.log(rs)
+// }
+
+//getData();
 
 // async function getData(){
 //     const data = await fetch("http://matuan.online:2422/api/Reviews");
@@ -218,36 +262,41 @@ app.set('view engine', 'html')
 app.get('/', (req, res) => {
     req.session.mode_show = false
     req.session.favorite = []
-    req.session.top5 = 1
-    req.session.popular = 1
-    req.session.rating = 1
+    req.session.top5 = 0
+    req.session.rev = 0
+    req.session.fav = 0
     // res.send("Success in session")
 })
 
 app.get('/landingpage', async (req, res) => {
     const mode = req.session.mode_show || false;
     const favor = req.session.favorite || [];
-    const index_top5 = req.session.top5 || 1;
+    const index_top5 = req.session.top5 || 0;
+    const index_toprev = req.session.rev || 0;
     let data_top5 = [];
+    let top_revenue = [];
     try {
         data_top5 = await db.top_num("Movie", 5, 'rating')
+        top_revenue = await db.top_num("Movie", 30, 'revenue')
     }
     catch(e){
         console.log(e)
     }
     //console.log(index_top5)
-    //console.log(data_top5[index_top5])
-    res.render("main", {mode : mode, favor: favor, data_top5: data_top5[index_top5]})
+    console.log(top_revenue[index_toprev])
+    res.render("main", {mode : mode, favor: favor, data_top5: data_top5[index_top5], top_rev: top_revenue.slice(3*index_toprev, 3*(index_toprev + 1))})
 })
 
 app.post('/switch_mode', (req, res) => {
     console.log(req.body)
     if (req.body.switch == "on"){
         req.session.mode_show = true
+        //req.session.top5 = 3
         console.log("aaaaa")
     }
     else{
         console.log("bbbb")
+        //req.session.top5 = 1
         req.session.mode_show = false
     }
     //req.session.mode_show = true
@@ -262,6 +311,18 @@ app.post('/switch_mode', (req, res) => {
     res.redirect('/landingpage')
     // return res.status(400)
     // res.send("Success in switch")
+})
+
+app.post('/pre_top5', (req, res) => {
+    console.log("adsfasaaa")
+    req.session.top5 = (req.session.top5 - 1 + 5) % 5;
+    res.redirect('/landingpage')
+})
+
+app.post('/next_top5', (req, res) => {
+    console.log("adsfasaaa")
+    req.session.top5 = (req.session.top5 + 1 + 5) % 5;
+    res.redirect('/landingpage')
 })
 
 //app.use('/user', require('./routes/user_router.js'));

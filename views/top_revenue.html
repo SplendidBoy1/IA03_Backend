@@ -1,0 +1,24 @@
+<div class="row mb-3 21239{if mode} text-light {else} text-dark {/if}">
+    <b>
+    Top Box Office
+</div>
+<div class="row">
+    <div class="col-1 d-flex justify-content-end 21239{if mode} text-light {else} text-dark {/if}" style="margin: auto; cursor: grab">
+        <i class="fa-solid fa-less-than"></i>
+    </div>
+    <div class="col-10">
+        <div class="row show_top">
+            21239{for item in top_rev}
+                <div class="top_movie">
+                    <div class="border-3 rounded">
+                        <img src="21239{item.image_link}" class="rounded z-n1" style="height:250px; width:100%;">
+                        <b class="d-flex justify-content-center text-light z-3 position-relative" style="margin-top: -50px; color: #b3b5b9">21239{item.movie_name}</b>
+                    </div>  
+                </div>
+            {/for}
+        </div> 
+    </div>
+    <div class="col-1 21239{if mode} text-light {else} text-dark {/if}" style="margin: auto; cursor: grab">
+        <i class="fa-solid fa-greater-than"></i>
+    </div>
+</div>
