@@ -39,6 +39,26 @@ module.exports = schema => {
         top_num: async(tbName, number_top, type) => {
             const rs = await db.any(`SELECT * FROM "${this.schema}"."${tbName}" WHERE ${type} IS NOT NULL ORDER BY ${type} DESC LIMIT ${number_top}`);
             return rs
+        },
+        top_num_join: async(tbName_1, tbName_2, number_top, primary_key, type) => {
+            console.log(type)
+            console.log("qqqqqqqqqq")
+            const rs = await db.any(`SELECT * FROM "${this.schema}"."${tbName_1}" INNER JOIN "${this.schema}"."${tbName_2}" ON "${this.schema}"."${tbName_2}".${primary_key} = "${this.schema}"."${tbName_1}".${primary_key} WHERE "${this.schema}"."${tbName_2}".${type} IS NOT NULL ORDER BY "${this.schema}"."${tbName_2}".${type} ASC LIMIT ${number_top}`);
+            return rs
+        },
+        count: async tbName => {
+            // console.log(type)
+            // console.log("qqqqqqqqqq")
+            const rs = await db.any(`SELECT count(*) from "${this.schema}"."${tbName}"`)
+            return rs
+        },
+        delete_and_update_rank:  async (tbName, data_match, type) => {
+            const get_var = await db.any(`SELECT * from "${this.schema}"."${tbName}" where "${this.schema}"."${tbName}".${type} = '${data_match}'`)
+            console.log(get_var)
+            // console.log(type)
+            // console.log("qqqqqqqqqq")
+            // const rs = await db.any(`SELECT count(*) from "${this.schema}"."${tbName}"`)
+            return rs
         }
     }
 }

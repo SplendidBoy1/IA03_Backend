@@ -1,0 +1,15 @@
+<div class="rounded 21239{if mode} navbar_dark_color {else} navbar_light_color {/if}">
+    <div class="">
+        <form  id="add_fav" class="form row my-3" action="/add_fav_movie" method="POST">
+            <div class="col-3 px-4 21239{if mode} text-light {else} text-dark {/if}">
+                Add new favorite movie
+            </div>
+            <div class="col-3">
+                <input type="text" id="add_id" name="add_id" class="form-control 21239{if mode} bg-dark dark_search {else} bg-light light_search {/if}"  type="search" placeholder="Id movie" aria-label="Search">
+            </div>
+            <div class="col-6">
+                <button class="btn btn-outline-success" type="submit" onclick="this.form.submit()">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

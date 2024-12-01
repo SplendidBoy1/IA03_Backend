@@ -2,9 +2,68 @@ const fs = require('fs')
 const path = require('path')
 
 
-function nest(content, option){
+function matching_data(regex, array, sentence, index){
+    
+    sentence = sentence.replace(regex, (match) => {
+        //console.log(sentence)
+        let rep_str = array + '[' + index + ']'
+        //console.log(rep_str)
+        //sentence = sentence.replace(regex, rep_str);
+        return rep_str
+        
+        // return matching_data(regex, array, sentence, index)
 
+        }
+    )
+    if (regex.test(sentence)){
+        sentence = matching_data(regex, array, sentence, index)
+    }
+    //console.log(sentence)
+    return sentence
 }
+
+// function Loop_sentence(content, option){
+//     content = content.replace(
+//         /21239{for ([\s\S]*?) in ([\s\S]*?)}([\s\S]*?){\/for}/g,
+//         (matching, each, array, sentence) => {
+//             const array_data = options[array.trim()];
+//             // console.log(each)
+//             // console.log(array_data)
+//             // console.log("123")
+//             // console.log(sentence)
+//             // console.log("123")
+//             if (Array.isArray(array_data)) {
+//                 //let regex = ''
+//                 const regex = new RegExp(`\s*${each}\s*`)
+//                 // console.log("asdfasdf")
+//                 // console.log(each)
+//                 // console.log(regex)
+//                 // console.log(sentence)
+//                 const data_arr = array_data.map((item, index) => {
+//                     //console.log(each)
+//                     return sentence.replace(regex, (match) => {
+//                         console.log(match)
+//                         let rep_str = array + '[' + index + ']'
+//                         //console.log(rep_str)
+//                         return rep_str
+//                     })
+//                 }).join('')
+//                 console.log(data_arr)
+//                 // let data_return = ''
+//                 // for (let index = 0; index < data_arr.length; index++){
+//                 //     //console.log(data_return)
+//                 //     data_return = data_return +  data_arr[index]
+//                 // }
+//                 //console.log(data_return)
+//                 return data_arr
+                
+                
+//             }
+//             //callback(null, content)
+//             return ''
+//         }
+//     )
+// }
 
 
 function temPlateEngine(filePath, options, callback){
@@ -49,11 +108,11 @@ function temPlateEngine(filePath, options, callback){
             /21239{for ([\s\S]*?) in ([\s\S]*?)}([\s\S]*?){\/for}/g,
             (matching, each, array, sentence) => {
                 const array_data = options[array.trim()];
-                console.log(each)
-                console.log(array_data)
-                console.log("123")
-                console.log(sentence)
-                console.log("123")
+                // console.log(each)
+                // console.log(array_data)
+                // console.log("123")
+                // console.log(sentence)
+                // console.log("123")
                 if (Array.isArray(array_data)) {
                     //let regex = ''
                     const regex = new RegExp(`\s*${each}\s*`)
@@ -63,20 +122,16 @@ function temPlateEngine(filePath, options, callback){
                     // console.log(sentence)
                     const data_arr = array_data.map((item, index) => {
                         //console.log(each)
-                        return sentence.replace(regex, (match) => {
-                            let rep_str = array + '[' + index + ']'
-                            //console.log(rep_str)
-                            return rep_str
-                        })
-                    })
+                        return matching_data(regex, array, sentence, index)
+                    }).join('')
                     //console.log(data_arr)
-                    let data_return = ''
-                    for (let index = 0; index < data_arr.length; index++){
-                        //console.log(data_return)
-                        data_return = data_return +  data_arr[index]
-                    }
+                    // let data_return = ''
+                    // for (let index = 0; index < data_arr.length; index++){
+                    //     //console.log(data_return)
+                    //     data_return = data_return +  data_arr[index]
+                    // }
                     //console.log(data_return)
-                    return data_return
+                    return data_arr
                     
                     
                 }
@@ -115,7 +170,7 @@ function temPlateEngine(filePath, options, callback){
                 // const match_var = match.match(/(?<=\{).*?(?=\})/g);
                 // console.log(match_var)
                 //console.log(options[value])
-                console.log(value)
+                //console.log(value)
                 if (value.includes("[")){
                     //console.log("Trueeee")
                     let split_data = value.split("[")

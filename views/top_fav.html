@@ -1,11 +1,11 @@
 <div class="row mb-3 21239{if mode} text-light {else} text-dark {/if}">
     <b>
-    Top Box Office
+    Top Favorites
 </div>
 <div class="row">
     <div class="col-1" style="margin: auto;">
-        <form id="pre_rev" action="/pre_rev" method="POST">
-            <div onclick="$(`#pre_rev`).submit()" class="d-flex justify-content-end 21239{if mode} text-light {else} text-dark {/if}" style="margin: auto; cursor: grab">
+        <form id="pre_fav" action="/pre_fav" method="POST">
+            <div onclick="$(`#pre_fav`).submit()" class="d-flex justify-content-end 21239{if mode} text-light {else} text-dark {/if}" style="margin: auto; cursor: grab">
                 <a>
                     <i class="fa-solid fa-less-than"></i>
                 </a>
@@ -15,7 +15,7 @@
     </div>
     <div class="col-10">
         <div class="row show_top">
-            21239{for item in top_rev}
+            21239{for item in top_fav}
                 <div class="top_movie">
                     <div class="border-3 rounded">
                         <img src="21239{item.image_link}" class="rounded z-n1" style="height:250px; width:100%;">
@@ -26,12 +26,11 @@
         </div> 
     </div>
     <div class="col-1" style="margin: auto;">
-        <form id="next_rev" action="/next_rev" method="POST">
-            <div onclick="$(`#next_rev`).submit()" class="21239{if mode} text-light {else} text-dark {/if}" style="margin: auto; cursor: grab">
+        <form id="next_fav" action="/next_fav" method="POST">
+            <div onclick="$(`#next_fav`).submit()" class="21239{if mode} text-light {else} text-dark {/if}" style="margin: auto; cursor: grab">
                 <a>
                     <i class="fa-solid fa-greater-than"></i>
                 </a>
-                
             </div>
         </form>
     </div>
