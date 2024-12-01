@@ -1,5 +1,5 @@
 import express from 'express'
-import controller_1 from '../controllers/Control_Edit.js'
+import controller_1 from '../controllers/edit_favor_controller.js'
 
 const router = express.Router();
 
@@ -17,10 +17,10 @@ const router = express.Router();
 //     // res.send("qqqqqqqqqqqqqqqqqqq")
 // })
 
-router.get('/edit_page/option', controller_1.render_option);
+router.post('/add_fav_movie', controller_1.add_fav)
+router.post('/remove_fav_movie', controller_1.remove_fav)
+// router.get('/get_infor', controller_1.render_information);
 
-// router.get('/edit_page/option/delete', controller_1.render_delete);
-
-router.get('/edit_page/option/update', controller_1.render_update);
+// router.get('/edit_page', controller_1.to_edit_page);
 
 export default router

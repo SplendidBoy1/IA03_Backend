@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-12 show_search mt-4">
+        21239{for item in data_search}
+            <div class="card" :class="light ? 'bg-light' : 'bg-dark'" style="cursor:grab">
+                <div class="card-header rounded d-flex justify-content-center">
+                    <img class="rounded" src="21239{item.image_link}" width="300" height="400">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-center text-center" :class="light ? 'text-dark' : 'text-light'">
+                        21239{item.movie_name}
+                    </h5>
+                    <div class="text-center" style="color: #b3b5b9">
+                        [
+                        <div style="color: #b3b5b9" class="d-inline-block">21239{item.genes}</div>
+                        ]
+                    </div>
+                    <div class="text-center" style="color: #b3b5b9">
+                        Rating imDb: 21239{item.rating}
+                    </div>
+                </div>
+            </div>
+        {/for}
+    </div>
+</div>

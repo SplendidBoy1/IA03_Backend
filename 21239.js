@@ -1,5 +1,5 @@
-const fs = require('fs')
-const path = require('path')
+import * as fs from 'fs'
+import * as path from 'path'
 
 
 function matching_data(regex, array, sentence, index){
@@ -66,7 +66,7 @@ function matching_data(regex, array, sentence, index){
 // }
 
 
-function temPlateEngine(filePath, options, callback){
+export default function (filePath, options, callback){
     const viewDir = path.dirname(filePath)
     console.log(viewDir)
     fs.readFile(filePath, 'utf8', (err, content) => {
@@ -214,4 +214,4 @@ function temPlateEngine(filePath, options, callback){
     })
 }
 
-module.exports = temPlateEngine;
+//module.exports = temPlateEngine;
